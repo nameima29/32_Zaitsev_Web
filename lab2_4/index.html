@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>лаба 2, 4</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">Переключить тему</button>
+
+    <header>
+        <h1>ВЫШМАТ ПРОГРЕВ</h1>
+        <p>2-я и 4-я лабораторная работа</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>РЕПЕТИТОР ПО МАТАНУ</h2>
+            <p>Привет! приглашаю на индивидуальные занятия по матану для первокурсников</p>
+            <h3>Помогу с:</h3>
+            <ol>
+                <li>подготовкой к пересдаче</li>
+                <li>разбором теоретических вопросов понятным языком</li>
+                <li>пониманием тем текущего семестра по матану и восполнением пробелов</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Топ 5 причин почему ТЕБЕ необходимо Записаться на занятия по ВЫШМАТУ</h2>
+            <ol>
+                <li>В осеннем семестре я занял 1-е место во внутривузовской олимпиаде по математике среди второкурсников.</li>
+                <li>Объясняю без зубрежки, для меня главное, чтобы ученик понял и разобрался в материале, а не просто заучил.</li>
+                <li>Высылаю конспекты после каждого занятия</li>
+                <li>Отвечаю на вопросы, вне занятия.</li>
+                <li>Не придумал.</li>
+            </ol>
+        </section>
+
+        <section id="reviewsSection">
+            <h2>Лента отзывов</h2>
+            <div id="reviewsContainer">
+            </div>
+
+            <h3>Оставить отзыв</h3>
+            <form id="reviewForm" class="review-form">
+                <div class="form-group">
+                    <label for="name">Ваше имя (никнейм) *</label>
+                    <input type="text" id="name" name="name" required placeholder="Например: @user123">
+                </div>
+                <div class="form-group">
+                    <label for="reviewText">Текст отзыва *</label>
+                    <textarea id="reviewText" name="reviewText" rows="4" required placeholder="Напишите ваш отзыв..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="reviewImage">Изображение (необязательно)</label>
+                    <input type="file" id="reviewImage" name="reviewImage" accept="image/*">
+                    <img id="imagePreview" class="image-preview" src="#" alt="Превью" style="display: none;">
+                </div>
+                <button type="submit" class="submit-btn">Добавить отзыв</button>
+            </form>
+        </section>
+    </main>
+
+    <aside>
+        <section>
+            <img src="para.png" alt="пара" border="0" />
+            <p>Возлюбленная парочка может показать... +7929*******, +7977*******, +7929*******</p>
+        </section>
+        <section>
+            <img src="jaba.png" alt="жаба" border="0" />
+            <p>Вам позвонила жаба. Ответить: 89269*******</p>
+        </section>
+        <section>
+            <img src="challenge.png" alt="челлендж" border="0" />
+            <p>Доведи до слез охранника по телефону челлендж. 89269*******</p>
+        </section>
+    </aside>
+
+    <footer style="text-align: center; color: var(--footer-color); margin-top: 30px; border-top: 1px solid var(--main-border); padding: 20px 0;">
+        <p>© вышмат прогрев, 2026</p>
+    </footer>
+
+    <script src="cookie.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
