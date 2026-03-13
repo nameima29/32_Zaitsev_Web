@@ -1,0 +1,354 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>лаба 1</title>
+    <style>
+
+        body {
+            background-color: #111112;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            width: 100%;
+            max-width: 1200px;
+            margin: 30px auto 50px auto;
+            background: linear-gradient(145deg, #1a1a1a, #000000);
+            color: white;
+            font-size: 26px;
+            font-family: 'Courier New', cursive, monospace;
+            border-radius: 30px 30px 30px 30px;
+            padding: 25px 35px;
+            box-shadow: 8px 6px 13px 8px rgba(255, 0, 0, 0.5), -16px 12px 20px 16px rgba(255, 255, 0, 0.4), 48px 26px 71px 16px rgba(0, 255, 255, 0.3);
+            border-left: 6px solid gold;
+        }
+
+            header h1 {
+                font-size: 3rem;
+                text-shadow: 4px 4px 0 #ff4444, 7px 7px 0 #4444ff;
+                letter-spacing: 3px;
+                margin-bottom: 10px;
+            }
+
+            header p {
+                font-size: 1.3rem;
+                color: #ffd966;
+                font-style: italic;
+                border-top: 2px solid #888;
+                padding-top: 12px;
+            }
+
+        main {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-radius: 50px 50px 30px 30px;
+            padding: 40px 30px;
+            backdrop-filter: blur(1px);
+            border: 1px solid #2c2c2e;
+            margin: 20px 0 40px 0;
+        }
+
+        article {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        section {
+            color: white;
+            background: #1e1e20;
+            padding: 35px 40px;
+            border-radius: 48px 48px 48px 48px;
+            border: 1px solid #ffaa33;
+            box-shadow: 0 30px 50px -15px #b8860b, inset 0 0 20px rgba(255, 200, 0, 0.15);
+        }
+
+            section h2 {
+                font-size: 2.4rem;
+                color: white;
+                margin-bottom: 35px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+            }
+
+            section h3 {
+                font-size: 2rem;
+                color: #ffb347;
+                margin: 30px 0 15px 0;
+                padding-bottom: 8px;
+            }
+
+            section h4 {
+                font-size: 1.6rem;
+                color: #ccaaff;
+                margin: 25px 0 10px 0;
+            }
+
+            section ol {
+                padding-left: 35px;
+            }
+
+            section li {
+                margin-bottom: 40px;
+                font-size: 1.3rem;
+                background: #2a2a2c;
+                padding: 25px 25px 30px 25px;
+                border-radius: 30px;
+                border: 1px solid #505050;
+                box-shadow: inset 0 2px 5px #0f0f0f;
+            }
+
+                section li img {
+                    max-width: 100%;
+                    display: block;
+                    margin: 25px auto 10px auto;
+                    border-radius: 40px;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+                }
+
+        blockquote {
+            background: #2d2d30;
+            padding: 25px 30px;
+            border-radius: 30px;
+            font-style: italic;
+            color: #f0e6d2;
+            border-left: 12px solid #b8860b;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+            line-height: 1.7;
+        }
+
+            blockquote::before {
+                content: "“";
+                font-size: 4rem;
+                color: #ffcc66;
+                line-height: 0.5;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 3px 12px;
+            margin: 30px 0;
+            background: #222225;
+            border-radius: 40px;
+            padding: 20px;
+            border: 2px solid #4a4a4e;
+        }
+
+        caption {
+            font-size: 2rem;
+            color: gold;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+
+        th {
+            background: #3b3b40;
+            color: #ffd966;
+            padding: 18px 15px;
+            font-size: 1.3rem;
+            border-radius: 20px 20px 20px 20px;
+            border-bottom: 5px solid #b8860b;
+        }
+
+        td {
+            background: #2c2c30;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #5a5a60;
+        }
+
+            td:first-child {
+                font-weight: bold;
+                color: #ffaa66;
+            }
+
+        a {
+            color: #88ddff;
+            font-weight: bold;
+            font-size: 1.3rem;
+            border: 2px solid #88ddff;
+            padding: 8px 22px;
+            border-radius: 60px;
+            margin: 15px 0;
+            background: rgba(0, 160, 255, 0.1);
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.25rem;
+            color: #dddddd;
+        }
+
+        q {
+            font-style: italic;
+            color: #ffcc99;
+            quotes: "«" "»";
+        }
+
+        img {
+            width: 70%;
+            height: auto;
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .game-button {
+            background: linear-gradient(145deg, #2a2a2c, #1a1a1a);
+            color: #ffd966;
+            font-size: 1.8rem;
+            font-weight: bold;
+            padding: 20px 45px;
+            border: 3px solid #ffaa33;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 30px 0 20px 0;
+            box-shadow: 0 10px 0 #b8860b, 0 15px 30px rgba(255, 215, 0, 0.3);
+            transition: all 0.15s ease;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+            .game-button:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 0 #b8860b, 0 20px 40px rgba(255, 215, 0, 0.5);
+                background: linear-gradient(145deg, #3a3a3c, #2a2a2a);
+                color: #ffeb99;
+                border-color: #ffc64a;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>LAB1</h1>
+        <p>1-я лабораторная работа</p>
+    </header>
+
+    <main>
+        <article>
+            <section>
+                <h2>Анекдоты недели</h2>
+                <ol>
+                    <li>
+                        "петля" - подумал Штирлиц. В дверь постучали "Временная"
+                        <img src="петля.jpeg" alt="петля">
+                    </li>
+                    <li>
+                        Что общего между башнями близнецами и гендерами? Раньше их было два, но теперь над ними нельзя шутить
+                        <img src="башни.jpg" alt="башни">
+                    </li>
+                    <li>
+                        Что сказал немецкий солдат, когда увидел очередного умершего в концлагере? Дохлый номер.
+                        <img src="номер.jpg" alt="четыре">
+                    </li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Недавний контент. Фильм <q>Ширли-мырли</q></h2>
+
+                <h3>Описание</h3>
+                <p>
+                    «Ширли-мырли» (1995) — комедийный фильм начала постсоветской эпохи, снятый Владимиром Меньшовым.
+                    В центре сюжета — мошенник, которого преследуют за кражу огромного алмаза. Фильм, помимо прочего,
+                    высмеивает шовинизм, антисемитизм и другие проявления межэтнической напряженности в России 1990-х годов.
+                </p>
+                <a href="https://www.youtube.com/watch?v=_v3Kl79PMuE" target="_blank">Посмотреть на ютубе</a>
+
+                <h3>Мнение</h3>
+                <p>
+                    Одна из лучших комедий, которую я когда-либо видел и один из немногих фильмов 90-х, который мне понравился.
+                    Сколько не пересматриваю, всегда открываю для себя что-то смешное в этой картине, поскольку каждый жест, каждое слово, каждый кадр продуманы до мелочей.
+                    Не смотреть людям без чувства юмора, поскольку им просто покажется маразмом полным (даже не смотря на то, что в самом начале своего рода дисклеймер фильм-фарс).
+                </p>
+
+                <h3>Цитаты</h3>
+
+                <h4>Первая</h4>
+                <blockquote>
+                    — Я отказываюсь от любых переговоров, пока вы не прекратите дискриминацию граждан цыганской национальности.<br />
+                    — Да кому они нахрен нужны — твои цыгане.<br />
+                    — Вот он, великодержавный шовинизм в действии. Забыли, кто для вас Куликовскую битву выиграл? — Неужто цыгане?<br />
+                    — А этот к нам вообще ненависти не скрывает. Проводит антицыганскую пропаганду среди американского населения.<br />
+                    — А за что вас любить-то? Что вы вообще за нация такая? Где ваши корни?<br />
+                    — Ну конечно, только вы богоизбранный народ, а остальные недочеловеки, гои!<br />
+                    — Кстати, насчет гоев — это вы, евреи, действительно загнули, сами-то что, лучше?<br />
+                    — Ну что ты, братишка, они не лучшие, они единственные, а остальные должны им прислуживать. Но один прокол у них вышел — Христа распяли?!<br />
+                    — Сами породили, сами и распяли! Это наши сугубо еврейские разборки, гоям не понять.<br />
+                    — Ты что, моего Христа в евреи записываешь?!<br />
+                    — А ты как думал, если папа — еврей, мама — еврейка, то ребеночек — русский?<br />
+                    — Папа у него голубь!<br />
+                </blockquote>
+
+                <h4>Вторая</h4>
+                <blockquote>
+                    — Не забывает, как только отсидит — сразу же к маме.<br />
+                    — Хорошего сына воспитала, дай Бог каждому.<br />
+                </blockquote>
+
+                <h4>Третья</h4>
+                <blockquote>
+                    — Да-а, такого случая в истории уголовной России ещё не было…<br />
+                    — Какого именно?<br />
+                    — А что в одном месте собралось сразу шесть м*даков…<br />
+                </blockquote>
+            </section>
+
+            <section>
+                <h2>Расписание матчей РПЛ (команда Краснодар).</h2>
+
+                <table>
+                    <caption>
+                        Матчи февраль.
+                    </caption>
+
+                    <thead>
+                        <tr>
+                            <th>Число (дата)</th>
+                            <th>Матч</th>
+                            <th>Итоговый счет</th>
+                            <th>Время проведения</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>28</td>
+                            <td>Краснодар - Ростов</td>
+                            <td>- : -</td>
+                            <td>14:30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Игра "Угадай кто".</h2>
+                <h3>Описание</h3>
+                <p>Правила: у каждого игрока есть свое секретное случайное число. Цель игры: угадать секретное число соперника, быстрее, чем он отгадает ваше число.</p>
+                <p>Одако игра идет против компьютера, который использует наилучшую математически доказанную стратегию в этой игре 
+                    (и нет, это не просто бинарный поиск, иначе бы компьютер очень часто проигрывал, тк. он ходит всегда вторым). Подробнее об этой стратегии можно узнать по ссылке</p>
+
+                <a href="https://youtu.be/_3RNB8eOSx0?si=78ky8hLTkLDc64aY" target="_blank">Узнать как это работает!</a>
+
+                <button class="game-button" onClick="startGame()">Сыграть в "Угадай кто?"</button>
+
+            </section>
+
+        </article>
+    </main>
+
+    <script src="guess_who.js"> </script>
+</body>
+</html>
