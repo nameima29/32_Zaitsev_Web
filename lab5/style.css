@@ -221,7 +221,6 @@ input.error, textarea.error {
     color: white;
 }
 
-/* Анимация для уведомлений */
 @keyframes fadeInOut {
     0% {
         opacity: 0;
