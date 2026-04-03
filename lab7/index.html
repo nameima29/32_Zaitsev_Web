@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Explorer | Alpine.js SPA</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <div x-data="app" x-init="init">
+        <div class="container">
+            <header class="header">
+                <div class="logo">
+                    <h1>Lab 6</h1>
+                    <p>CAT FACTS | NATIONALIZE.IO | JSONPLACEHOLDER</p>
+                </div>
+                <nav class="api-nav">
+                    <template x-for="route in routes" :key="route.id">
+                        <button 
+                            class="api-nav-btn"
+                            :class="{ 'active': currentRoute === route.id }"
+                            @click="navigate(route.id)"
+                            x-text="route.name"
+                        ></button>
+                    </template>
+                </nav>
+            </header>
+
+            <main id="app">
+                <div x-show="currentRoute === 'cat'" x-cloak>
+                    <div class="api-section">
+                        <div class="section-header">
+                            <h2>🐱 CAT FACTS API</h2>
+                            <span class="badge">GET + локальный DELETE</span>
+                        </div>
+                        <div x-data="catFactsComponent" x-init="loadFacts">
+                            <div x-show="loading" class="loading-shimmer">🐱 ЗАГРУЗКА КОШАЧЬИХ ФАКТОВ...</div>
+                            <div x-show="!loading && facts.length === 0" class="placeholder-message">😿 Нет фактов. Обновите список</div>
+                            <div x-show="!loading && facts.length > 0" class="facts-list">
+                                <template x-for="(fact, idx) in facts" :key="idx">
+                                    <div class="fact-item">
+                                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                            <div style="flex: 1;" x-html="escapeHtml(fact.fact)"></div>
+                                            <button class="delete-btn" @click="deleteFact(idx)" style="margin-left: 15px;">🗑️ Удалить</button>
+                                        </div>
+                                        <div style="font-size: 0.7rem; color: #6b8c6b; margin-top: 8px;" x-text="`📏 длина: ${fact.length} симв.`"></div>
+                                    </div>
+                                </template>
+                            </div>
+                            <div class="action-group">
+                                <button class="secondary-btn" @click="loadFacts">🔄 GET (обновить факты)</button>
+                                <button class="danger-btn" @click="deleteLastFact">❌ Удалить последний факт</button>
+                            </div>
+                            <div class="response-area" x-text="`✅ GET https://catfact.ninja/facts | Получено фактов: ${facts.length}\n🧪 DELETE реализован локально (удаление из интерфейса)`"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="currentRoute === 'nationalize'" x-cloak>
+                    <div class="api-section">
+                        <div class="section-header">
+                            <h2>🌍 NATIONALIZE.IO API</h2>
+                            <span class="badge">GET (предсказание национальности)</span>
+                        </div>
+                        <div x-data="nationalizeComponent">
+                            <div class="action-group">
+                                <input type="text" x-model="name" class="api-input" placeholder="Введите имя (например: john, elena, michael)" autocomplete="off">
+                                <button class="save-btn" @click="predict">🔮 GET / предсказать</button>
+                            </div>
+                            <div x-show="loading" class="loading-shimmer">🔮 Анализируем национальность...</div>
+                            <div x-show="!loading && !result && !error" class="placeholder-message">✨ Введите имя и нажмите "Предсказать"</div>
+                            <div x-show="error" class="placeholder-message" x-text="`⚠️ Ошибка: ${error}`"></div>
+                            <div x-show="!loading && result" class="nation-result">
+                                <div style="margin-bottom: 12px; font-weight: bold;" x-text="`📊 Имя: ${escapeHtml(name)}`"></div>
+                                <template x-for="country in result.country.slice(0, 4)" :key="country.country_id">
+                                    <div class="country-item">
+                                        <span x-text="`${getFlag(country.country_id)} ${country.country_id}`"></span>
+                                        <span x-text="`вероятность: ${(country.probability * 100).toFixed(1)}%`"></span>
+                                    </div>
+                                </template>
+                            </div>
+                            <div x-show="!loading && result" class="response-area" style="margin-top: 14px;">✅ GET nationalize.io завершён (метод GET)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div x-show="currentRoute === 'jsonplaceholder'" x-cloak>
+                    <div class="api-section">
+                        <div class="section-header">
+                            <h2>📝 JSONPLACEHOLDER API</h2>
+                            <span class="badge">GET · POST · PUT · DELETE</span>
+                        </div>
+                        <div x-data="jsonplaceholderComponent" x-init="loadPosts">
+                            <div class="action-group">
+                                <input type="text" x-model="newPost.title" class="api-input" placeholder="Заголовок нового поста">
+                                <input type="text" x-model="newPost.body" class="api-input" placeholder="Текст поста">
+                                <button class="success-btn" @click="createPost">➕ POST (создать)</button>
+                            </div>
+                            
+                            <div class="put-section">
+                                <div style="margin-bottom: 10px; color: #8bc34a;">📝 PUT — обновление поста</div>
+                                <div class="action-group">
+                                    <select x-model="putData.id" class="api-input">
+                                        <option value="">-- Выберите ID для PUT --</option>
+                                        <template x-for="post in posts" :key="post.id">
+                                            <option :value="post.id" x-text="`ID ${post.id}: ${escapeHtml(post.title).substring(0, 40)}`"></option>
+                                        </template>
+                                    </select>
+                                    <input type="text" x-model="putData.title" class="api-input" placeholder="Новый заголовок">
+                                    <input type="text" x-model="putData.body" class="api-input" placeholder="Новый текст">
+                                    <button class="edit-btn" @click="updatePost">📝 PUT /posts/{id}</button>
+                                </div>
+                            </div>
+                            
+                            <div x-show="loading" class="loading-shimmer">📦 Загрузка постов...</div>
+                            <div x-show="!loading && posts.length === 0" class="placeholder-message">Нет постов, создайте первый через POST</div>
+                            <div x-show="!loading && posts.length > 0" class="scrollable-list">
+                                <template x-for="post in posts" :key="post.id">
+                                    <div class="post-item">
+                                        <div class="post-title" x-text="`📌 ${escapeHtml(post.title)}`"></div>
+                                        <div class="post-body" x-text="escapeHtml(post.body)"></div>
+                                        <div class="post-actions">
+                                            <button class="edit-btn" @click="fillPutForm(post)">✏️ PUT</button>
+                                            <button class="delete-btn" @click="deletePost(post.id)">🗑️ DELETE</button>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            
+                            <div class="response-area">
+                                🟢 GET /posts • POST /posts • PUT /posts/:id • DELETE /posts/:id<br>
+                                ✨ JSONPlaceholder API — полноценный CRUD с реальными методами
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
